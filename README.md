@@ -1,2 +1,18 @@
-# .github
-provides description for the project
+# This is the GH-Project for **„Die Entstehung des Bundes-Verfassungsgesetzes 1920“**
+
+### The basic data-/work-flow is:
+1. documents are getting scanned and images are beeing uploaded to [goobi](https://goobi-work.acdh.oeaw.ac.at/)
+2. metadata for documents are collected in [baserow](https://baserow.acdh-dev.oeaw.ac.at/database/421/table/2289/8962)
+3. The [import-workflow](https://github.com/bundesverfassung-oesterreich/bv-entities/actions/workflows/transcribus_import.yml) triggers the import of documents from goobi to transcribus and triggers the automated transcription. This workflow is however just updating the metadata and then remotly triggering another dedicated [import workflow](https://github.com/bundesverfassung-oesterreich/bv-transkribus-import/actions/runs/8083115048/job/22085445552).
+4. Socuments are proof red in a basci manner inside Transkribus.
+5. [Transkribus-Export workflow](https://github.com/bundesverfassung-oesterreich/bv-transkribus-export) periodically exports the documents from the repo. It only does so if the [baserow-metadata](https://baserow.acdh-dev.oeaw.ac.at/database/421/table/2289/8962) of the document contain the transkribus ids of document. Otherwhise it is being ignored. The resulting TEI-Xmls are saved it a [dedicated directory](https://github.com/bundesverfassung-oesterreich/bv-transkribus-export/tree/main/editions_source).
+6. The generated TEI-Xmls are corrected manually using the framework and the xml-schema generated and provided via a [dedicated repo](https://github.com/bundesverfassung-oesterreich/bv-schema-framework), containing some automated distribution worklows and a pages instance to make schema, docu & framework accessible via https. To provide a strict separation of manually corrected files and automatically generated files, the latter are copied manually from the [source direcory(]https://github.com/bundesverfassung-oesterreich/bv-transkribus-export/tree/main/editions_source) into [a repo only containing the manually corrected files](https://github.com/bundesverfassung-oesterreich/bv-working-data).
+7. The resulting data get published via [a dedicated repo](https://github.com/bundesverfassung-oesterreich/bv-static). All files from the automated transkribus export are getting published, but if the corresponding file is allready present in the [repo only containing the manually corrected files](https://github.com/bundesverfassung-oesterreich/bv-working-data) the latter is used as source assuming it provides the better data quality.
+
+
+### Schema and Framework
+All the data and most of the workflows are in the according repository. However some of the values in the dropdowns of author-mode (ids etc.) are provided via the schema (closed value lists for attributes). There is a [workflow in bv-entities](https://github.com/bundesverfassung-oesterreich/bv-entities/actions/workflows/update_schema.yml) to fetch the current metadata from baserow and trigger the generation of the schema (and thus update the closed value lists) with these new data.
+If the framework is changed a new version is automatically generated an distributed via gh-pages. If users have issue accessing the update, it can be triggered manually, via the help-submenu in Oxygen.
+
+### Noske
+There is a [small repo](https://github.com/bundesverfassung-oesterreich/bv-noske), containing a bunch of scripts to build and deploy a noske container to provide the data as corpus [a noske instance](https://bvg-main.acdh-dev.oeaw.ac.at/crystal/#open). 
