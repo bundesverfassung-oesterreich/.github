@@ -1,5 +1,8 @@
 # This is the GH-Project for **„Die Entstehung des Bundes-Verfassungsgesetzes 1920“**
 
+Its aim is to provide documents, commentarys and data in genral concerning the genesis of the Austrian Bundes-Verfassungsgesetzes in the 1920s.
+
+
 ### The basic data-/work-flow is:
 1. documents are getting scanned and images are beeing uploaded to [goobi](https://goobi-work.acdh.oeaw.ac.at/)
 2. metadata for documents are collected in [baserow](https://baserow.acdh-dev.oeaw.ac.at/database/421/table/2289/8962)
@@ -10,9 +13,17 @@
 7. The resulting data get published via [a dedicated repo](https://github.com/bundesverfassung-oesterreich/bv-static). All files from the automated transkribus export are getting published, but if the corresponding file is allready present in the [repo only containing the manually corrected files](https://github.com/bundesverfassung-oesterreich/bv-working-data) the latter is used as source assuming it provides the better data quality.
 
 
+### General Texts
+General texts such as introductions etc. are written in docx format, uploaded to google-docs, transformed to xml and then published on the page via a [dedicated repo](https://github.com/bundesverfassung-oesterreich/bv-website-text-parser).
+
+
+### Editors' commentarys
+Editors' commentarys providing insights into document genesis, historical significance and juristic implications are going to be written as docx and transformed to xml [via a dedicated repository](https://github.com/bundesverfassung-oesterreich/bv-kelsendotx-parser).
+
 ### Schema and Framework
 All the data and most of the workflows are in the according repository. However some of the values in the dropdowns of author-mode (ids etc.) are provided via the schema (closed value lists for attributes). There is a [workflow in bv-entities](https://github.com/bundesverfassung-oesterreich/bv-entities/actions/workflows/update_schema.yml) to fetch the current metadata from baserow and trigger the generation of the schema (and thus update the closed value lists) with these new data.
 If the framework is changed a new version is automatically generated an distributed via gh-pages. If users have issue accessing the update, it can be triggered manually, via the help-submenu in Oxygen.
+
 
 ### Noske
 There is a [small repo](https://github.com/bundesverfassung-oesterreich/bv-noske), containing a bunch of scripts to build and deploy a noske container to provide the data as corpus [a noske instance](https://bvg-main.acdh-dev.oeaw.ac.at/crystal/#open). 
