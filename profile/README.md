@@ -23,7 +23,7 @@ Editors' commentaries providing insights into document genesis, historical signi
 ### Schema and Framework
 All the data and most of the workflows are in the according repository. However some of the values in the dropdowns of author-mode (ids etc.) are provided via the schema (closed value lists for attributes). There is a [workflow in bv-entities](https://github.com/bundesverfassung-oesterreich/bv-entities/actions/workflows/update_schema.yml) to fetch the current metadata from baserow and trigger the generation of the schema (and thus update the closed value lists) with these new data. Everything concerning
 1. [Schema](https://bundesverfassung-oesterreich.github.io/bv-schema-framework/rng/schema.rng)
-2. [Documentation for the framework-users](https://bundesverfassung-oesterreich.github.io/bv-schema-framework/)
+2. [Documentation for the framework-users](https://b-vg.acdh.oeaw.ac.at/xml_docu.html)
 3. [The framework](https://bundesverfassung-oesterreich.github.io/bv-schema-framework/ADDON/b-vg-addon.xml)
 
 If the framework is changed a new version is automatically generated an distributed via gh-pages. If users have issue accessing the update, it can be triggered manually, via the help-submenu in Oxygen.
